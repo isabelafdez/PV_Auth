@@ -1,0 +1,23 @@
+/home
+    /admin
+        /register
+        if email is on the isAdmin table, then let them register and set the isAdmin as true on the userDB so they can log in
+        if email is not on the isAdmin table, then they cant register
+            uh oh seems that you don't have access to this page.
+                if you think this is a mistake, please contact ----contact email to add email to the table----; confirm with admin from club if the person can be given access
+
+        /login
+        if isAdmin is set to true let them login through the admin registry
+        if isAdmin is set to false then redirect them to the register page
+            **uh oh seems like you haven't registered yet
+
+    /user
+        /register
+        anyone can register if they have an fiu email
+        /login
+
+
+
+db: userTable
+    saves user info + isType 
+db: isAdmin

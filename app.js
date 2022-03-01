@@ -11,8 +11,6 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
 
 
-
-
 const app = express();
 
 app.use(express.static("public"));
@@ -76,6 +74,14 @@ app.get("/", function(req, res){
     res.render("home");
 });
 
+app.get("/admin", function(req, res){
+    res.render("admin");
+});
+
+app.get("/voter", function(req, res){
+    res.render("voter");
+});
+
 app.get('/auth/google',
     passport.authenticate('google', {
         scope: ['profile'] }
@@ -117,10 +123,16 @@ app.get("/submit", function(req, res){
     }
 });
 
+app.get("/verify", function(req, res){
+    if (req.isAuthenticated()){
+        res.render("verify");
+    } else {
+        res.redirect("/login");
+    }
+});
+
 app.post("/submit", function(req, res){
     const submittedSecret = req.body.secret;
-
-    console.log(req.user.id);
 
     User.findById(req.user.id, function(err, foundUser){
         if (err){
